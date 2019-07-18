@@ -1,0 +1,26 @@
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: armand-demo-cluster
+  region: us-east-1
+
+nodeGroups:
+  - name: nodegroup-p3dn
+    instanceType: p3dn.24xlarge
+    availabilityZones: ["us-east-1c"]
+    desiredCapacity: 4
+
+    iam:
+      withAddonPolicies:
+        imageBuilder: true
+        ebs: true
+        fsx: true
+        efs: true
+
+    # Do you want to be able to ssh into the nodes directly? Haven't found I've ever needed this (usually you can
+    # launch a pod for the same effect)
+    ssh:
+      allow: true
+      publicKeyName: 'us-east-1-armanmcq-tf-neo'

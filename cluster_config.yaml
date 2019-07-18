@@ -1,0 +1,24 @@
+# An example of ClusterConfig object with access to CSI drivers:
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: armand-demo-cluster
+  region: us-east-1
+
+
+vpc:
+  id: "vpc-f6570b8d"
+  subnets:
+    # must provide 'private' and/or 'public' subnets by availability zone as shown. Must has 3 subnets even if you are
+    # only going to use nodes in one of them.
+    public:
+      us-east-1b:
+        id: "subnet-58b35b04"
+
+      us-east-1c:
+        id: "subnet-b440b9d3"
+
+      us-east-1f:
+        id: "subnet-21ac2f2e"
