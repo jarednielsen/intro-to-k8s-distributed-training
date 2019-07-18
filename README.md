@@ -1,6 +1,8 @@
 # Practical Introduction to Distributed Training on Kubernetes
 
-### 1. Install `eksctl`, which is a tool that makes it easy to create and add nodes to an EKS cluster
+### 1. Install `eksctl`.
+ 
+`eksctl` is a tool that makes it easy to create and add nodes to an EKS cluster.
 
 ```
 brew tap weaveworks/tap
@@ -9,7 +11,9 @@ brew install weaveworks/tap/eksctl
 
 NOTE: These instructions were tested with 0.1.40. The 0.1.X version changes introduce breaking changes and instructions may need to be updated for newer versions. To download 0.1.40, you can download the binary from [here](https://github.com/weaveworks/eksctl/releases/tag/0.1.40)
 
-### 2. Launch the EKS cluster with `eksctl`. This will create the EKS cluster (the master nodes). This may take 20+ minutes. 
+### 2. Launch the EKS cluster with `eksctl`. 
+
+This will create the EKS cluster (the master nodes). This may take 20+ minutes. 
 
 ```
 eksctl create cluster -f cluster_config.yaml --auto-kubeconfig
@@ -102,6 +106,29 @@ $ eksctl create nodegroup -f nodegroup_config.yaml
 
 </p>
 </details>
+
+
+### 3. Set the KUBECONFIG
+
+The kubeconfig file holds information and credentials for your cluster(s). You need to tell `kubectl` to use the kubeconfig for the cluster we just created by setting the `KUBECONFIG` environment variable.
+
+
+```
+export KUBECONFIG=~/.kube/eksctl/clusters/armand-demo-cluster
+```
+
+<details><summary>More Details</summary>
+<p>
+
+
+- Process would be different if we were not using `--auto-kubeconfig`. If you store info for multiple cluster on the main kubeconfig file (`~/.kube/config`), you will need to use the [`kubectl config`](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/)
+
+</p>
+</details>
+
+
+
+
 
 
 
