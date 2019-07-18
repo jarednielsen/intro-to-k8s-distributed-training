@@ -15,9 +15,7 @@ NOTE: These instructions were tested with 0.1.40. The 0.1.X version changes intr
 eksctl create cluster -f cluster_config.yaml --auto-kubeconfig
 ```
 
-### Output
-
-<details><summary>Reveal</summary>
+<details><summary>Command Output</summary>
 <p>
 
 ```
@@ -41,8 +39,7 @@ $ eksctl create cluster -f cluster_config.yaml --auto-kubeconfig
 </p>
 </details>
 
-### More Details 
-<details><summary>Reveal</summary>
+<details><summary>More Details</summary>
 <p>
 
 - An EKS cluster (the master nodes) is very cheap ($0.20 per hour). 
@@ -62,9 +59,7 @@ $ eksctl create cluster -f cluster_config.yaml --auto-kubeconfig
 eksctl create nodegroup -f nodegroup_config.yaml
 ```
 
-### Ouput
-
-<details><summary>Reveal</summary>
+<details><summary>Command Output</summary>
 <p>
 
 ```
@@ -98,9 +93,7 @@ $ eksctl create nodegroup -f nodegroup_config.yaml
 </p>
 </details>
 
-### More Detail
-
-<details><summary>Reveal</summary>
+<details><summary>More Details</summary>
 <p>
 
 
@@ -109,7 +102,7 @@ $ eksctl create nodegroup -f nodegroup_config.yaml
 
 </p>
 </details>
-0. 
+
 
 
 
