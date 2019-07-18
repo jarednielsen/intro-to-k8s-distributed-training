@@ -2,5 +2,6 @@
 
 set -e
 
-git commit -am "Quick update"
+git add .
+git commit -m "Quick update"
 git push
