@@ -9,7 +9,7 @@ brew install weaveworks/tap/eksctl
 
 NOTE: These instructions were tested with 0.1.40. The 0.1.X version changes introduce breaking changes and instructions may need to be updated for newer versions. To download 0.1.40, you can download the binary from [here](https://github.com/weaveworks/eksctl/releases/tag/0.1.40)
 
-## 0. Launch the EKS cluster with `eksctl`. This will create the EKS cluster (the master nodes). This may take 20+ minutes. 
+## 2. Launch the EKS cluster with `eksctl`. This will create the EKS cluster (the master nodes). This may take 20+ minutes. 
 
 ```
 eksctl create cluster -f cluster_config.yaml --auto-kubeconfig
@@ -19,6 +19,7 @@ eksctl create cluster -f cluster_config.yaml --auto-kubeconfig
 
 <details><summary>Reveal</summary>
 <p>
+
 ```
 $ eksctl create cluster -f cluster_config.yaml --auto-kubeconfig
 [ℹ]  using region us-east-1
@@ -36,6 +37,7 @@ $ eksctl create cluster -f cluster_config.yaml --auto-kubeconfig
 [ℹ]  kubectl command should work with "/Users/armanmcq/.kube/eksctl/clusters/armand-demo-cluster", try 'kubectl --kubeconfig=/Users/armanmcq/.kube/eksctl/clusters/armand-demo-cluster get nodes'
 [✔]  EKS cluster "armand-demo-cluster" in "us-east-1" region is ready
 ```
+
 </p>
 </details>
 
@@ -49,13 +51,12 @@ $ eksctl create cluster -f cluster_config.yaml --auto-kubeconfig
   - [Creating and Managing Cluster with `eksctl`](https://eksctl.io/usage/creating-and-managing-clusters/)
   - [Organizing Cluster Access Using kubeconfig Files](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
 
-
 </p>
 </details>
 
 
 
-0. Launch the the worker nodes with `eksctl`. This will launch the EC2 instances and connect them to the k8s cluster. 
+## 3. Launch the the worker nodes with `eksctl`. This will launch the EC2 instances and connect them to the k8s cluster. 
 
 ```
 eksctl create nodegroup -f nodegroup_config.yaml
@@ -65,6 +66,7 @@ eksctl create nodegroup -f nodegroup_config.yaml
 
 <details><summary>Reveal</summary>
 <p>
+
 ```
 $ eksctl create nodegroup -f nodegroup_config.yaml
 [ℹ]  using region us-east-1
@@ -98,9 +100,15 @@ $ eksctl create nodegroup -f nodegroup_config.yaml
 
 ### More Detail
 
+<details><summary>Reveal</summary>
+<p>
+
+
 - `eksctl` calls this a nodegroup. You could have multiple nodegroup - one with GPU instances, another with CPU instances for example. 
 - You can do this as part of the `eksctl create cluster` step by adding the `nodegroup_config.yaml` info to `cluster_config.yaml`.
 
+</p>
+</details>
 0. 
 
 
