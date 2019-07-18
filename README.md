@@ -35,7 +35,8 @@ $ eksctl create cluster -f cluster_config.yaml --auto-kubeconfig
 [✔]  EKS cluster "armand-demo-cluster" in "us-east-1" region is ready
 ```
 
-### More Details <details><summary></summary>
+### More Details 
+<details><summary></summary>
 <p>
 
 
