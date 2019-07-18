@@ -17,6 +17,8 @@ eksctl create cluster -f cluster_config.yaml --auto-kubeconfig
 
 ### Output
 
+<details><summary>Reveal</summary>
+<p>
 ```
 $ eksctl create cluster -f cluster_config.yaml --auto-kubeconfig
 [ℹ]  using region us-east-1
@@ -34,9 +36,11 @@ $ eksctl create cluster -f cluster_config.yaml --auto-kubeconfig
 [ℹ]  kubectl command should work with "/Users/armanmcq/.kube/eksctl/clusters/armand-demo-cluster", try 'kubectl --kubeconfig=/Users/armanmcq/.kube/eksctl/clusters/armand-demo-cluster get nodes'
 [✔]  EKS cluster "armand-demo-cluster" in "us-east-1" region is ready
 ```
+</p>
+</details>
 
 ### More Details 
-<details><summary></summary>
+<details><summary>Reveal</summary>
 <p>
 
 - An EKS cluster (the master nodes) is very cheap ($0.20 per hour). 
@@ -59,6 +63,8 @@ eksctl create nodegroup -f nodegroup_config.yaml
 
 ### Ouput
 
+<details><summary>Reveal</summary>
+<p>
 ```
 $ eksctl create nodegroup -f nodegroup_config.yaml
 [ℹ]  using region us-east-1
@@ -86,6 +92,9 @@ $ eksctl create nodegroup -f nodegroup_config.yaml
 [ℹ]  checking security group configuration for all nodegroups
 [ℹ]  all nodegroups have up-to-date configuration
 ```
+
+</p>
+</details>
 
 ### More Detail
 
