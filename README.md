@@ -1,6 +1,6 @@
 # Practical Introduction to Distributed Training on Kubernetes
 
-0. Install `eksctl`, which is a tool that makes it easy to create and add nodes to an EKS cluster
+## 1. Install `eksctl`, which is a tool that makes it easy to create and add nodes to an EKS cluster
 
 ```
 brew tap weaveworks/tap
@@ -9,7 +9,7 @@ brew install weaveworks/tap/eksctl
 
 NOTE: These instructions were tested with 0.1.40. The 0.1.X version changes introduce breaking changes and instructions may need to be updated for newer versions. To download 0.1.40, you can download the binary from [here](https://github.com/weaveworks/eksctl/releases/tag/0.1.40)
 
-0. Launch the EKS cluster with `eksctl`. This will create the EKS cluster (the master nodes). This may take 20+ minutes. 
+## 0. Launch the EKS cluster with `eksctl`. This will create the EKS cluster (the master nodes). This may take 20+ minutes. 
 
 ```
 eksctl create cluster -f cluster_config.yaml --auto-kubeconfig
@@ -38,7 +38,6 @@ $ eksctl create cluster -f cluster_config.yaml --auto-kubeconfig
 ### More Details 
 <details><summary></summary>
 <p>
-
 
 - An EKS cluster (the master nodes) is very cheap ($0.20 per hour). 
   - You may want to leave the cluster always running and just remove the GPU worker nodes when you aren't using it.
@@ -95,3 +94,15 @@ $ eksctl create nodegroup -f nodegroup_config.yaml
 
 0. 
 
+
+
+
+
+## Collapsible section
+```
+<details><summary></summary>
+<p>
+Markdown here
+</p>
+</details>
+```
