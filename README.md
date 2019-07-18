@@ -158,6 +158,7 @@ We will be storing data and logs on on FSx.
 
 ![Image1](lustre_creation_screenshots/1_fs_details.png)
 ![Image2](lustre_creation_screenshots/2_network_and_security.png)
+The above security group is the one we created with `lustre_security_group.py`
 ![Image3](lustre_creation_screenshots/3_s3_link.png)
 ![SummaryImage](lustre_creation_screenshots/summary.png)
 
