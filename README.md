@@ -156,11 +156,10 @@ We will be storing data and logs on on FSx.
 <details><summary>Screenshots</summary>
 <p>
 
-
-![Image1](lustre_creation_screenshots/1_fs_details.png)
-![Image2](lustre_creation_screenshots/2_network_and_security.png)
-![Image3](lustre_creation_screenshots/3_s3_link.png)
-![SummaryImage](lustre_creation_screenshots/summary.png)
+- ![Image1](lustre_creation_screenshots/1_fs_details.png)
+- ![Image2](lustre_creation_screenshots/2_network_and_security.png)
+- ![Image3](lustre_creation_screenshots/3_s3_link.png)
+- ![SummaryImage](lustre_creation_screenshots/summary.png)
 
 </p>
 </details>
