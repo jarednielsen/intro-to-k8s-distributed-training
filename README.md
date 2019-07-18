@@ -1,6 +1,6 @@
 # Practical Introduction to Distributed Training on Kubernetes
 
-## 1. Install `eksctl`, which is a tool that makes it easy to create and add nodes to an EKS cluster
+### 1. Install `eksctl`, which is a tool that makes it easy to create and add nodes to an EKS cluster
 
 ```
 brew tap weaveworks/tap
@@ -9,7 +9,7 @@ brew install weaveworks/tap/eksctl
 
 NOTE: These instructions were tested with 0.1.40. The 0.1.X version changes introduce breaking changes and instructions may need to be updated for newer versions. To download 0.1.40, you can download the binary from [here](https://github.com/weaveworks/eksctl/releases/tag/0.1.40)
 
-## 2. Launch the EKS cluster with `eksctl`. This will create the EKS cluster (the master nodes). This may take 20+ minutes. 
+### 2. Launch the EKS cluster with `eksctl`. This will create the EKS cluster (the master nodes). This may take 20+ minutes. 
 
 ```
 eksctl create cluster -f cluster_config.yaml --auto-kubeconfig
@@ -53,7 +53,7 @@ $ eksctl create cluster -f cluster_config.yaml --auto-kubeconfig
 
 
 
-## 3. Launch the the worker nodes with `eksctl`. This will launch the EC2 instances and connect them to the k8s cluster. 
+### 3. Launch the the worker nodes with `eksctl`. This will launch the EC2 instances and connect them to the k8s cluster. 
 
 ```
 eksctl create nodegroup -f nodegroup_config.yaml
@@ -108,7 +108,7 @@ $ eksctl create nodegroup -f nodegroup_config.yaml
 
 
 
-## Collapsible section
+### Collapsible section
 ```
 <details><summary></summary>
 <p>
