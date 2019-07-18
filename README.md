@@ -35,24 +35,20 @@ $ eksctl create cluster -f cluster_config.yaml --auto-kubeconfig
 [✔]  EKS cluster "armand-demo-cluster" in "us-east-1" region is ready
 ```
 
-### More Details
-<details><summary>Show</summary>
+### More Details <details><summary></summary>
 <p>
 
-#### yes, even hidden code blocks!
-
-```python
-print("hello world!")
-```
-
-</p>
-</details>
 
 - An EKS cluster (the master nodes) is very cheap ($0.20 per hour). 
   - You may want to leave the cluster always running and just remove the GPU worker nodes when you aren't using it.
 - `--auto-kubeconfig` is a personal preference. It writes the kubeconfig to a separate file instead of adding it to the main kubeconfig file. See more here:
   - [Creating and Managing Cluster with `eksctl`](https://eksctl.io/usage/creating-and-managing-clusters/)
   - [Organizing Cluster Access Using kubeconfig Files](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
+
+
+</p>
+</details>
+
 
 
 0. Launch the the worker nodes with `eksctl`. This will launch the EC2 instances and connect them to the k8s cluster. 
