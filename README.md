@@ -121,15 +121,49 @@ export KUBECONFIG=~/.kube/eksctl/clusters/armand-demo-cluster
 <p>
 
 
-- Process would be different if we were not using `--auto-kubeconfig`. If you store info for multiple cluster on the main kubeconfig file (`~/.kube/config`), you will need to use the [`kubectl config`](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/)
+- Process would be different if we were not using `--auto-kubeconfig`. If you store info for multiple cluster on the main kubeconfig file (`~/.kube/config`), you will need to use the [`kubectl config`](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/) command.
+
+</p>
+</details>
+
+### 4. Install NVIDIA device plugin
+
+This tells enables GPU support in k8s.
+
+```
+kubectl create -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/1.0.0-beta/nvidia-device-plugin.yml
+```
+
+<details><summary>More Details</summary>
+<p>
+
+
+- This is a DaemonSet that runs on each node. It allows you to automatically:
+    - Expose the number of GPUs on each nodes of your cluster
+    - Keep track of the health of your GPUs
+    - Run GPU enabled containers in your Kubernetes cluster.
+- https://github.com/NVIDIA/k8s-device-plugin
 
 </p>
 </details>
 
 
 
+### 4. Set up FSx for Lustre
+
+We will be storing data and logs on on FSx.
+
+<details><summary>Screenshots</summary>
+<p>
 
 
+![Image1](lustre_creation_screenshots/1_fs_details.png)
+![Image2](lustre_creation_screenshots/2_network_and_security.png)
+![Image3](lustre_creation_screenshots/3_s3_link.png)
+![SummaryImage](lustre_creation_screenshots/summary.png)
+
+</p>
+</details>
 
 
 

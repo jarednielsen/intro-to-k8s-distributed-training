@@ -12,6 +12,11 @@ nodeGroups:
     availabilityZones: ["us-east-1c"]
     desiredCapacity: 4
 
+    securityGroups:
+      withShared: true
+      withLocal: true
+      attachIDs: ['sg-0316f56447cbb5fc2']
+
     iam:
       withAddonPolicies:
         imageBuilder: true
