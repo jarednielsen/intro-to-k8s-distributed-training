@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tensorboard
+spec:
+  containers:
+  - name: tensorboard
+    image: armandmcqueen/tensorpack-mask-rcnn:master-latest # Any container that has tensorboard
+    command: ["tensorboard"]
+    args: ["--logdir=/fsx"]
+    securityContext:
+      privileged: true
+    volumeMounts:
+    - name:  fsx
+      mountPath: /fsx
+    ports:
+    - containerPort: 6006
+    # https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/
+  volumes:
+  - name:  fsx
+    persistentVolumeClaim:
+      claimName: tensorpack-fsx
