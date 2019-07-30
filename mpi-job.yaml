@@ -1,0 +1,79 @@
+apiVersion: kubeflow.org/v1alpha1
+kind: MPIJob
+metadata:
+  name: maskrcnn
+  namespace: default
+spec:
+  gpus: 8
+  template:
+    spec:
+      containers:
+      - args:
+        - --output-filename
+        - /fsx/logs/default/maskrcnn
+        - --allow-run-as-root
+        - --display-map
+        - --tag-output
+        - --timestamp-output
+        - python3
+        - /tensorpack-mask-rcnn/MaskRCNN/train.py
+        - --logdir
+        - /fsx/logs/default/maskrcnn/train_log/
+        - --fp16
+        - --images_per_epoch
+        - "120000"
+        - --config
+        - MODE_MASK=True
+        - MODE_FPN=True
+        - DATA.BASEDIR=/fsx/coco/2017/uncompressed_for_tensorpack/
+        - DATA.TRAIN=["train2017"]
+        - DATA.VAL=("val2017")
+        - TRAIN.GRADIENT_CLIP=0
+        - TRAIN.BATCH_SIZE_PER_GPU=1
+        - TRAIN.EVAL_PERIOD=24
+        - TRAIN.BASE_LR=0.00125
+        - TRAIN.WARMUP_INIT_LR=0.000416667
+        - TRAIN.LR_EPOCH_SCHEDULE=[(8, 0.1), (10, 0.01), (12, None)]
+        - RPN.TOPK_PER_IMAGE=True
+        - PREPROC.PREDEFINED_PADDING=True
+        - FRCNN.BBOX_REG_WEIGHTS=[10., 10., 5., 5.]
+        - TEST.RESULT_SCORE_THRESH=0.05
+        - BACKBONE.WEIGHTS=/fsx/coco/2017/uncompressed_for_tensorpack/pretrained-models/ImageNet-R50-AlignPadding.npz
+        - BACKBONE.NORM=FreezeBN
+        - TRAINER=horovod
+        command:
+        - mpirun
+        env:
+        - name: HOROVOD_CYCLE_TIME
+          value: "0.5"
+        - name: HOROVOD_FUSION_THRESHOLD
+          value: "67108864"
+        - name: NCCL_SOCKET_IFNAME
+          value: ^lo,docker0
+        - name: NCCL_MIN_NRINGS
+          value: "8"
+        - name: NCCL_DEBUG
+          value: INFO
+        - name: TENSORPACK_FP16
+          value: "1"
+        image: armandmcqueen/tensorpack-mask-rcnn:master-latest
+        imagePullPolicy: Always
+        name: maskrcnn
+        resources:
+          limits:
+            nvidia.com/gpu: "8"
+        volumeMounts:
+        - mountPath: /fsx
+          name: fsx
+        - mountPath: /ebs
+          name: ebs
+        workingDir: /tensorpack-mask-rcnn
+      restartPolicy: Never
+      volumes:
+      - name: fsx
+        persistentVolumeClaim:
+          claimName: tensorpack-fsx
+      - hostPath:
+          path: /ebs
+          type: DirectoryOrCreate
+        name: ebs

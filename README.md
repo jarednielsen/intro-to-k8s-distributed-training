@@ -153,6 +153,8 @@ kubectl create -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/1.0
 
 We will be storing data and logs on on FSx.
 
+First we need to create a security group
+
 <details><summary>Screenshots</summary>
 <p>
 
@@ -166,6 +168,64 @@ The above security group is the one we created with `lustre_security_group.py`
 </details>
 
 
+### 5. Install FSx CSI driver
+
+```
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-fsx-csi-driver/master/deploy/kubernetes/manifest.yaml
+```
+
+### 6. Create the FSx cluster as a PersistantVolume and PersistantVolumeClaim in Kubernetes
+
+In `pv-fsx.yaml`, you need to replace the fsx id with the id of the cluster you created (the fields are `spec.csi.volumeHandle` and `spec.csi.volumeAttributes.dnsname`). 
+
+Also change the region if needed (`spec.csi.volumeAttributes.dnsname` )
+
+```
+kubectl apply -f pv-fsx.yaml
+```
+Confirm success with `kubectl get pv`
+```
+kubectl apply -f pvc-fsx.yaml
+```
+
+
+### 7. Launch a pod that is connected to Lustre to confirm it worked
+
+Launch the pod
+```
+kubectl apply -f attach-pvc.yaml
+```
+Use `kubectl get pod` to see the pod being created. `-w` flag will watch.
+
+
+
+
+'SSH' into the pod
+```
+kubectl exec attach-pvc -it -- /bin/bash
+```
+
+
+### 8. Install Helm and Tiller
+
+- Install helm locally
+    - `brew install kubernetes-helm`
+- Set up tiller in the cluster
+    - `kubectl create -f helm/tiller-rbac-config.yaml`
+    - `helm init --service-account tiller --history-max 200`
+
+
+### 9. Install MPIJob Operator
+
+```
+helm install --name mpijob helm/mpijob/
+```
+
+### 10. Run a job
+
+```
+helm install --name maskrcnn ./maskrcnn_with_extra/
+```
 
 
 
