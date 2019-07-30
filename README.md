@@ -221,19 +221,3 @@ kubectl exec attach-pvc -it -- /bin/bash
 helm install --name mpijob helm/mpijob/
 ```
 
-### 10. Run a job
-
-```
-helm install --name maskrcnn ./maskrcnn_with_extra/
-```
-
-
-
-### Collapsible section
-```
-<details><summary></summary>
-<p>
-Markdown here
-</p>
-</details>
-```
