@@ -3,8 +3,8 @@ global:
   name: maskrcnn
 maskrcnn:
   experiment_group: default # For organizing result dirs.
-  gpus: 8
-  batch_size_per_gpu: 1
+  gpus: 16
+  batch_size_per_gpu: 4
   image: armandmcqueen/tensorpack-mask-rcnn:master-latest # image URL from ECR or DockerHub
   train_script: /tensorpack-mask-rcnn/MaskRCNN/train.py
   fp_16: 1 # TODO: Setting this to 0 does not disable FP16, it just disables loss scaling

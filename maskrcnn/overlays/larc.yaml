@@ -1,8 +1,0 @@
-append:
-  global:
-    name: -larc
-
-set:
-  maskrcnn:
-    image: armandmcqueen/tensorpack-mask-rcnn:dev-larc
-

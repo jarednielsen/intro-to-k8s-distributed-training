@@ -8,7 +8,9 @@ spec:
   template:
     spec:
       containers:
-      - args:
+      - command:
+        - mpirun
+        args:
         - --output-filename
         - /fsx/logs/default/maskrcnn
         - --allow-run-as-root
@@ -41,8 +43,6 @@ spec:
         - BACKBONE.WEIGHTS=/fsx/coco/2017/uncompressed_for_tensorpack/pretrained-models/ImageNet-R50-AlignPadding.npz
         - BACKBONE.NORM=FreezeBN
         - TRAINER=horovod
-        command:
-        - mpirun
         env:
         - name: HOROVOD_CYCLE_TIME
           value: "0.5"
