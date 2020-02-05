@@ -174,18 +174,18 @@ The above security group is the one we created with `lustre_security_group.py`
 kubectl apply -k "github.com/kubernetes-sigs/aws-fsx-csi-driver/deploy/kubernetes/overlays/dev/?ref=master"
 ```
 
-### 6. Create the FSx cluster as a PersistantVolume and PersistantVolumeClaim in Kubernetes
+### 6. Create the FSx cluster as a PersistentVolume and PersistentVolumeClaim in Kubernetes
 
 In `pv-fsx.yaml`, you need to replace the fsx id with the id of the cluster you created (the fields are `spec.csi.volumeHandle` and `spec.csi.volumeAttributes.dnsname`).
 
 Also change the region if needed (`spec.csi.volumeAttributes.dnsname` )
 
 ```
-kubectl apply -f pv-fsx.yaml
+kubectl apply -f pv_fsx.yaml
 ```
 Confirm success with `kubectl get pv`
 ```
-kubectl apply -f pvc-fsx.yaml
+kubectl apply -f pvc_fsx.yaml
 ```
 
 
@@ -193,7 +193,7 @@ kubectl apply -f pvc-fsx.yaml
 
 Launch the pod
 ```
-kubectl apply -f attach-pvc.yaml
+kubectl apply -f attach_pvc.yaml
 ```
 Use `kubectl get pod` to see the pod being created. `-w` flag will watch.
 
