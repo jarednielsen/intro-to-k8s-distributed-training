@@ -1,7 +1,7 @@
 # Practical Introduction to Distributed Training on Kubernetes
 
 ### 1. Install `eksctl`.
- 
+
 `eksctl` is a tool that makes it easy to create and add nodes to an EKS cluster.
 
 ```
@@ -11,9 +11,9 @@ brew install weaveworks/tap/eksctl
 
 NOTE: These instructions were tested with 0.1.40. The 0.1.X version changes introduce breaking changes and instructions may need to be updated for newer versions. To download 0.1.40, you can download the binary from [here](https://github.com/weaveworks/eksctl/releases/tag/0.1.40)
 
-### 2. Launch the EKS cluster with `eksctl`. 
+### 2. Launch the EKS cluster with `eksctl`.
 
-This will create the EKS cluster (the master nodes). This may take 20+ minutes. 
+This will create the EKS cluster (the master nodes). This may take 20+ minutes.
 
 ```
 eksctl create cluster -f cluster_config.yaml --auto-kubeconfig
@@ -46,7 +46,7 @@ $ eksctl create cluster -f cluster_config.yaml --auto-kubeconfig
 <details><summary>More Details</summary>
 <p>
 
-- An EKS cluster (the master nodes) is very cheap ($0.20 per hour). 
+- An EKS cluster (the master nodes) is very cheap ($0.20 per hour).
   - You may want to leave the cluster always running and just remove the GPU worker nodes when you aren't using it.
 - `--auto-kubeconfig` is a personal preference. It writes the kubeconfig to a separate file instead of adding it to the main kubeconfig file. See more here:
   - [Creating and Managing Cluster with `eksctl`](https://eksctl.io/usage/creating-and-managing-clusters/)
@@ -57,7 +57,7 @@ $ eksctl create cluster -f cluster_config.yaml --auto-kubeconfig
 
 
 
-### 3. Launch the the worker nodes with `eksctl`. This will launch the EC2 instances and connect them to the k8s cluster. 
+### 3. Launch the the worker nodes with `eksctl`. This will launch the EC2 instances and connect them to the k8s cluster.
 
 ```
 eksctl create nodegroup -f nodegroup_config.yaml
@@ -101,7 +101,7 @@ $ eksctl create nodegroup -f nodegroup_config.yaml
 <p>
 
 
-- `eksctl` calls this a nodegroup. You could have multiple nodegroup - one with GPU instances, another with CPU instances for example. 
+- `eksctl` calls this a nodegroup. You could have multiple nodegroup - one with GPU instances, another with CPU instances for example.
 - You can do this as part of the `eksctl create cluster` step by adding the `nodegroup_config.yaml` info to `cluster_config.yaml`.
 
 </p>
@@ -171,12 +171,12 @@ The above security group is the one we created with `lustre_security_group.py`
 ### 5. Install FSx CSI driver
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-fsx-csi-driver/master/deploy/kubernetes/manifest.yaml
+kubectl apply -k "github.com/kubernetes-sigs/aws-fsx-csi-driver/deploy/kubernetes/overlays/dev/?ref=master"
 ```
 
 ### 6. Create the FSx cluster as a PersistantVolume and PersistantVolumeClaim in Kubernetes
 
-In `pv-fsx.yaml`, you need to replace the fsx id with the id of the cluster you created (the fields are `spec.csi.volumeHandle` and `spec.csi.volumeAttributes.dnsname`). 
+In `pv-fsx.yaml`, you need to replace the fsx id with the id of the cluster you created (the fields are `spec.csi.volumeHandle` and `spec.csi.volumeAttributes.dnsname`).
 
 Also change the region if needed (`spec.csi.volumeAttributes.dnsname` )
 
