@@ -171,7 +171,7 @@ The above security group is the one we created with `lustre_security_group.py`
 ### 5. Install FSx CSI driver
 
 ```
-kubectl apply -k "github.com/kubernetes-sigs/aws-fsx-csi-driver/deploy/kubernetes/overlays/dev/?ref=master"
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-fsx-csi-driver/release-0.2.0/deploy/kubernetes/manifest.yaml
 ```
 
 ### 6. Create the FSx cluster as a PersistentVolume and PersistentVolumeClaim in Kubernetes
